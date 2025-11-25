@@ -1,0 +1,25 @@
+:root{
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
+#app{
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+}
+
+.bg-gradient-primary-link {
+  background: linear-gradient(45deg, #ff9900, #ff3300);
+  color: black !important;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.bg-gradient-primary-link:hover {
+  background: linear-gradient(45deg, #ffcc00, #ff6600);
+  color: black !important;
+}
