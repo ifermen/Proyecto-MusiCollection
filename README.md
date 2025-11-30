@@ -11,7 +11,7 @@ Además, podrás marcar tus pistas y artistas favoritos para acceder a ellos rá
 - Guardado de favoritos mediante localStorage
 
 ## Despliegue
-El despliegue está realizado con vercel. Este presenta un problema al cargar los recursos de los botones de favoritos al que no le he encontrado solución.
+El despliegue está realizado con **Vercel**. En el despliegue con Vercel existe un problema con la carga de los iconos de favoritos, pendiente de resolución.
 Las paginas disponibles son:
 - Landing page: https://proyecto-musicollection.vercel.app
 
@@ -19,34 +19,34 @@ Las paginas disponibles son:
   
 - Página de lista de canciones: https://proyecto-musicollection.vercel.app/#/Song
   
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Song.png)
+  ![Captura del listado de canciones](./src/asset/screenshots/Song.png)
   
 - Página de creación de canciones: https://proyecto-musicollection.vercel.app/#/SongManager?action=create
   
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Create_Song.png)
+  ![Captura del formulario de canciones](./src/asset/screenshots/Create_Song.png)
   
 - Página de lista de artistas: https://proyecto-musicollection.vercel.app/#/artist
   
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Artist.png)
+  ![Captura del listado de artistas](./src/asset/screenshots/Artist.png)
   
 - Página de creación de artistas: https://proyecto-musicollection.vercel.app/#/ArtistManager?action=create
 
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Create_Artist.png)
+  ![Captura del formulario de artistas](./src/asset/screenshots/Create_Artist.png)
   
-- Página de favoritos: http://localhost:5173/#/favorite
+- Página de favoritos: https://proyecto-musicollection.vercel.app/#/favorite
 
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Favorite.png)
+  ![Captura de la pagina de favoritos](./src/asset/screenshots/Favorite.png)
   
 - Página de error de URL incorrecta: https://proyecto-musicollection.vercel.app/#/[Cualquier URL que esté mal]
   
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Error_404.png)
+  ![Captura de error de URL incorrecta](./src/asset/screenshots/Error_404.png)
   
 - Página de error de un parámetro incorrecto: https://proyecto-musicollection.vercel.app/#/[URL con parámetro incorrecto]
   
-  ![Captura de la pagina de inicio](./src/asset/screenshots/Error_Msg.png)
+  ![Captura de error de un parámetro incorrecto](./src/asset/screenshots/Error_Msg.png)
 
 ## Gestión de información
-Para la base de datos se ha utilizado Supabase el cual es un servicio en internet que provee una base de datos en internet que podemos consumir desde nuestra aplicación.
+Para la base de datos se ha utilizado **Supabase**. Es un servicio que proporciona una base de datos online accesible desde nuestra aplicación.
 Las tablas creadas son:
 - Artist (id,name,genre,nationality,birthdate)
 - Song (id,title,idArtist,year)
