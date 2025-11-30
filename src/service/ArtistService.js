@@ -1,4 +1,6 @@
+import { SupabaseClientApi } from "../api/SupabaseAPI";
 
+const TABLE_NAME = "Artist";
 
 /**
  * @typedef {Object} Artist
@@ -9,12 +11,11 @@
  * @property {Date} birthdate
  */
 
-import { SupabaseClientApi } from "../api/SupabaseAPI";
 
 
 /**
  * @callback callbackGetAllArtist
- * @property {Artist[]} artists
+ * @param {Artist[]} artists
  */
 /**
  * 
@@ -22,24 +23,80 @@ import { SupabaseClientApi } from "../api/SupabaseAPI";
  */
 export function getAllArtist(callback) {
   SupabaseClientApi
-    .from("Artist")
+    .from(TABLE_NAME)
     .select()
     .then((response) => {
       if (response.error) {
         throw new Error("Select Error");
       }
       callback(response.data);
-    })
-    .catch(error => {
-        console.error(error);
-        
+    });
+}
+
+/**
+ * @callback callbackAddArtist
+ * @param {boolean} isError
+ * @param {string} msg
+ */
+/**
+ * 
+ * @param {Artist} artist
+ * @param {callbackAddArtist} callback 
+ */
+export function addArtist(artist,callback){
+  SupabaseClientApi
+    .from(TABLE_NAME)
+    .insert(artist)
+    .then(response => {
+      if(response.status == 201){
+        callback(false,"Artista creado con exito");
+      }else{
+        callback(true,"No se insertó el artista")
+      }
+    });
+}
+
+/**
+ * @callback callbackGetArtistsByIdList
+ * @param {Artist[]}
+ */
+/**
+ * 
+ * @param {number[]} ids 
+ * @param {*} callback 
+ */
+export function getArtistsByIdList(ids,callback){
+  SupabaseClientApi
+    .from(TABLE_NAME)
+    .select()
+    .in("id",ids)
+    .then(response => {
+      if(response.error){
+        throw new Error("Error al obtener los datos de la base de datos.");
+      }
+      callback(response.data);
     })
 }
 
 /**
- * 
- * @param {*} callback 
+ * @callback callbackGetArtistById
+ * @param {Artist} artist
  */
-export function addArtist(callback){
-
+/**
+ * 
+ * @param {number} id 
+ * @param {callbackGetArtistById} callback 
+ */
+export function getArtistById(id,callback){
+  SupabaseClientApi
+    .from(TABLE_NAME)
+    .select()
+    .eq("id",id)
+    .then(response => {
+      if(response.data.length > 0){
+        callback(response.data[0]);
+      }else{
+        callback({id:-1,name:"Artista no encontrado"});
+      }
+    })
 }

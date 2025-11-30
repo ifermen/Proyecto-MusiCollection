@@ -2,6 +2,8 @@
  * @typedef {import("../service/SongService").Song} Song
  */
 
+import { getArtistById } from "../service/ArtistService";
+import { addFavoriteSong, isSongFavorite, removeFavoriteSong } from "../service/FavoriteLocalStorageService";
 import { getAllSongs } from "../service/SongService";
 
 /**
@@ -70,9 +72,13 @@ export function addTableHead(table) {
   thArtist.textContent = "Artista";
   tr.appendChild(thArtist);
 
-  const thDate = document.createElement("th");
-  thDate.textContent = "Date";
-  tr.appendChild(thDate);
+  const thYear = document.createElement("th");
+  thYear.textContent = "Año";
+  tr.appendChild(thYear);
+
+  const thAction = document.createElement("th");
+  thAction.textContent = "Acciones";
+  tr.appendChild(thAction);
 
   thead.appendChild(tr);
   table.appendChild(thead);
@@ -82,7 +88,7 @@ export function addTableHead(table) {
  *
  * @param {Song} songs
  */
-export function renderTableData(songs) {
+function renderTableData(songs) {
   const tbody = document.getElementById("tableSong");
   tbody.innerHTML = "";
   songs.forEach((song) => {
@@ -95,7 +101,7 @@ export function renderTableData(songs) {
  * @param {Song} song
  * @param {HTMLTableElement} tbody
  */
-export function addNewRow(song, tbody) {
+function addNewRow(song, tbody) {
   const tr = document.createElement("tr");
 
   const tdTitle = document.createElement("td");
@@ -107,12 +113,108 @@ export function addNewRow(song, tbody) {
   tr.appendChild(tdGenre);
 
   const tdArtist = document.createElement("td");
-  tdArtist.textContent = song.idArtist;
+  getArtistById(song.idArtist,(artist) => {
+    tdArtist.textContent = artist.name;
+  })
   tr.appendChild(tdArtist);
 
-  const tdDate = document.createElement("td");
-  tdDate.textContent = song.date;
-  tr.appendChild(tdDate);
+  const tdYear = document.createElement("td");
+  tdYear.textContent = song.year;
+  tr.appendChild(tdYear);
+
+  const tdAction = document.createElement("td");
+  renderAction(tdAction,song);
+  tr.appendChild(tdAction);
 
   tbody.appendChild(tr);
+}
+
+/**
+ *
+ * @param {HTMLTableCellElement} td
+ * @param {Song} song
+ */
+function renderAction(td, song) {
+  /*const aShow = document.createElement("a");
+    aShow.href = "#/ArtistManager?action=show&artistId=" + artist.id;
+    const btnShow = document.createElement("button");
+    btnShow.className = "btn";
+    const imgShow = document.createElement("img");
+    imgShow.src = "src/asset/svg/show.svg";
+    imgShow.width = 20;
+    imgShow.height = 20;
+    imgShow.style = "display: block";
+    btnShow.appendChild(imgShow);
+    aShow.appendChild(btnShow);
+    td.appendChild(aShow);
+
+    const aEdit = document.createElement("a");
+    aEdit.href = "#/ArtistManager?action=show&artistId=" + artist.id;
+    const btnEdit = document.createElement("button");
+    btnEdit.className = "btn";
+    const imgEdit = document.createElement("img");
+    imgEdit.src = "src/asset/svg/edit.svg";
+    imgEdit.width = 20;
+    imgEdit.height = 20;
+    imgEdit.style = "display: block";
+    btnEdit.appendChild(imgEdit);
+    aEdit.appendChild(btnEdit);
+    td.appendChild(aEdit);
+    
+    const aDelete = document.createElement("a");
+    aDelete.href = "#/ArtistManager?action=show&artistId=" + artist.id;
+    const btnDelete = document.createElement("button");
+    btnDelete.className = "btn";
+    const imgDelete = document.createElement("img");
+    imgDelete.src = "src/asset/svg/delete.svg";
+    imgDelete.width = 20;
+    imgDelete.height = 20;
+    imgDelete.style = "display: block";
+    btnDelete.appendChild(imgDelete);
+    aDelete.appendChild(btnDelete);
+    td.appendChild(aDelete);*/
+
+  const btnFavorite = document.createElement("button");
+  btnFavorite.className = "btn";
+  const imgFavorite = document.createElement("img");
+  if (isSongFavorite(song.id)) {
+    imgFavorite.src = "src/asset/svg/star_filled.svg";
+    btnFavorite.addEventListener("click", () => {
+      unfavSong(btnFavorite,imgFavorite,song.id);
+    });
+  } else {
+    imgFavorite.src = "src/asset/svg/star.svg";
+    btnFavorite.addEventListener("click", () => {
+      favSong(btnFavorite,imgFavorite,song.id);
+    });
+  }
+  imgFavorite.width = 20;
+  imgFavorite.height = 20;
+  imgFavorite.style = "display: block";
+  btnFavorite.appendChild(imgFavorite);
+  td.appendChild(btnFavorite);
+}
+
+/**
+ *
+ * @param {HTMLButtonElement} btn
+ * @param {number} id
+ */
+function favSong(btn,img, id) {
+  img.src = "src/asset/svg/star_filled.svg";
+  addFavoriteSong(id);
+  btn.removeEventListener("click",() => favSong(btn,img,id));
+  btn.addEventListener("click", () => unfavSong(btn,img,id));
+}
+
+/**
+ *
+ * @param {HTMLButtonElement} btn
+ * @param {number} id
+ */
+function unfavSong(btn,img, id) {
+  img.src = "src/asset/svg/star.svg";
+  removeFavoriteSong(id);
+  btn.removeEventListener("click",() => unfavSong(btn,img,id));
+  btn.addEventListener("click", () => favSong(btn,img,id));
 }

@@ -9,27 +9,15 @@ body{
   grid-template-rows: auto 1fr auto;
 }
 
-.bg-gradient-primary-link {
-  background: linear-gradient(45deg, #ff9900, #ff3300);
-  color: black !important;
-  border: none;
-  transition: 0.3s ease;
-}
-
-.bg-gradient-primary-link:hover {
-  background: linear-gradient(45deg, #ffcc00, #ff6600);
-  color: black !important;
-}
-
 .btn-color-custom{
   background: linear-gradient(45deg, #ff9900, #ff3300);
   color: black !important;
   border: none;
-  transition: 0.3s ease;
   font-weight: bold;
+  transition:0.6s ease-in-out;
 }
 
 .btn-color-custom:hover {
-  background: linear-gradient(45deg, #ffcc00, #ff6600);
+  background: linear-gradient(45deg, #ff9900, #ff6600);
   color: black !important;
 }

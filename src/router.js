@@ -1,8 +1,10 @@
 import { Artist } from "./view/Artist.js";
 import { ArtistManager } from "./view/ArtistManager.js";
+import { Favorite } from "./view/Favorite.js";
 import { Home } from "./view/Home.js";
 import { NotFound } from "./view/NotFound.js";
 import { Song } from "./view/Song.js";
+import { SongManager } from "./view/SongManager.js";
 
 /**
  * @typedef {Object} Param
@@ -18,8 +20,10 @@ export function router() {
   const routes = {
     "/": Home,
     "/song": Song,
+    "/songmanager": SongManager,
     "/artist": Artist,
-    "/artistmanager": ArtistManager
+    "/artistmanager": ArtistManager,
+    "/favorite" : Favorite
   };
   const screen = routes[routeSplit[0]] || NotFound;
   if(routeSplit.length > 1){

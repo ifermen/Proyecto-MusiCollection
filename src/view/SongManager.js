@@ -1,28 +1,26 @@
+import { getAllArtist } from "../service/ArtistService";
+import { addSong } from "../service/SongService";
+import {
+  isBetween,
+  isRequired,
+  isNotYearInTheFuture,
+  isNumber,
+} from "../utility/formValidation";
+import { ErrorView } from "./ErrorView";
+
 /**
  * @typedef {import("../router").Param} Param
  */
-/**
- * @typedef {import("../service/ArtistService").Artist} Artist
- */
 
-import { addArtist } from "../service/ArtistService";
-import {
-  isBetween,
-  isDateInThePast,
-  isRequired,
-} from "../utility/formValidation";
-import { ErrorView } from "./ErrorView";
+/**
+ * @typedef {import("../service/SongService").Song} Song
+ */
 
 const ACTIONS_WITH_ID = ["show", "edit", "delete"];
 let paramAction = "";
 let paramId = "";
 
-/**
- *
- * @param {HTMLDivElement} main
- * @param {Param[]} params
- */
-export function ArtistManager(main, params) {
+export function SongManager(main, params) {
   main.innerHTML = "";
 
   try {
@@ -42,16 +40,16 @@ export function ArtistManager(main, params) {
   try {
     switch (paramAction) {
       case "edit":
-        h2.textContent = "Editar Artista";
+        h2.textContent = "Editar Canción";
         break;
       case "create":
-        h2.textContent = "Crear Artista";
+        h2.textContent = "Crear Canción";
         break;
       case "delete":
-        h2.textContent = "Borrar Artista";
+        h2.textContent = "Borrar Canción";
         break;
       case "show":
-        h2.textContent = "Mostar Artista";
+        h2.textContent = "Mostar Canción";
         break;
       default:
         throw new Error("Acción incorrecta");
@@ -65,7 +63,7 @@ export function ArtistManager(main, params) {
   divCardHead.appendChild(h2);
 
   const aButtonCreate = document.createElement("a");
-  aButtonCreate.href = "#/artist";
+  aButtonCreate.href = "#/song";
   const buttonCreate = document.createElement("button");
   buttonCreate.className = "btn btn-secondary rounded-5";
   buttonCreate.textContent = "Volver";
@@ -123,10 +121,10 @@ function renderForm(divCardBody) {
   const divCol2 = document.createElement("div");
   divCol2.className = "col col-6";
 
-  renderInputName(divCol1);
+  renderInputTitle(divCol1);
   renderInputGenre(divCol1);
-  renderInputNationality(divCol2);
-  renderInputBirthdate(divCol2);
+  renderInputArtist(divCol2);
+  renderInputYear(divCol2);
 
   divRow.appendChild(divCol1);
   divRow.appendChild(divCol2);
@@ -145,16 +143,16 @@ function renderForm(divCardBody) {
  *
  * @param {HTMLFormElement} form
  */
-function renderInputName(form) {
+function renderInputTitle(form) {
   const divFormControl = document.createElement("div");
   divFormControl.className = "form-group";
   const input = document.createElement("input");
-  input.id = "nameInput";
-  input.name = "nameInput";
+  input.id = "titleInput";
+  input.name = "titleInput";
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
-  label.textContent = "Nombre";
-  label.htmlFor = "nameInput";
+  label.textContent = "Título";
+  label.htmlFor = "titleInput";
   label.className = "form-label";
 
   divFormControl.appendChild(label);
@@ -173,7 +171,7 @@ function renderInputName(form) {
  */
 function renderInputGenre(form) {
   const divFormControl = document.createElement("div");
-  divFormControl.className = "form-group";
+  divFormControl.className = "form-group mt-2";
   const input = document.createElement("input");
   input.id = "genreInput";
   input.name = "genreInput";
@@ -193,24 +191,38 @@ function renderInputGenre(form) {
   form.appendChild(divFormControl);
 }
 
+//#TODO Estoy haciendo el input de artistas que es un select que muestra todos los artisitas
 /**
  *
  * @param {HTMLFormElement} form
  */
-function renderInputNationality(form) {
+function renderInputArtist(form) {
   const divFormControl = document.createElement("div");
   divFormControl.className = "form-group";
-  const input = document.createElement("input");
-  input.id = "nationalityInput";
-  input.name = "nationalityInput";
-  input.className = "form-control rounded-5";
+  const select = document.createElement("select");
+  select.id = "artistInput";
+  select.name = "artistInput";
+  select.className = "form-select rounded-5";
   const label = document.createElement("label");
-  label.textContent = "Nacionalidad";
-  label.htmlFor = "nationalityInput";
+  label.textContent = "Artista";
+  label.htmlFor = "artistInput";
   label.className = "form-label";
 
+  getAllArtist((artists) => {
+    const defaultOption = document.createElement("option");
+    defaultOption.textContent = " -- Elige una opción --";
+    defaultOption.value = "-1";
+    select.appendChild(defaultOption);
+    artists.forEach((artist) => {
+      const option = document.createElement("option");
+      option.textContent = artist.name;
+      option.value = artist.id;
+      select.appendChild(option);
+    });
+  });
+
   divFormControl.appendChild(label);
-  divFormControl.appendChild(input);
+  divFormControl.appendChild(select);
 
   const small = document.createElement("small");
   small.className = "text-danger";
@@ -223,17 +235,17 @@ function renderInputNationality(form) {
  *
  * @param {HTMLFormElement} form
  */
-function renderInputBirthdate(form) {
+function renderInputYear(form) {
   const divFormControl = document.createElement("div");
-  divFormControl.className = "form-group";
+  divFormControl.className = "form-group mt-2";
   const input = document.createElement("input");
-  input.id = "birthdateInput";
-  input.name = "birthdateInput";
-  input.type = "date";
+  input.type = "number";
+  input.id = "yearInput";
+  input.name = "yearInput";
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
-  label.textContent = "Fecha de nacimiento";
-  label.htmlFor = "birthdateInput";
+  label.textContent = "Año de publicación";
+  label.htmlFor = "yearInput";
   label.className = "form-label";
 
   divFormControl.appendChild(label);
@@ -272,14 +284,14 @@ function showSuccess(input) {
  * @param {HTMLInputElement} input
  * @returns {boolean}
  */
-function checkNameInput(input) {
+function checkTitleInput(input) {
   let result = false;
   if (isRequired(input.value)) {
     if (isBetween(input.value.length, 3, 50)) {
       showSuccess(input);
       result = true;
     } else {
-      showError(input, "El nombre debe de estar entre 3 y 50 caracteres.");
+      showError(input, "El título debe de estar entre 3 y 50 caracteres.");
     }
   } else {
     showError(input, "Este campo es obligatorio.");
@@ -309,20 +321,17 @@ function checkGenreInput(input) {
 
 /**
  *
- * @param {HTMLInputElement} input
+ * @param {HTMLSelectElement} input
  * @returns {boolean}
  */
-function checkNationalityInput(input) {
+function checkArtistInput(input) {
   let result = false;
   if (isRequired(input.value)) {
-    if (isBetween(input.value.length, 3, 50)) {
+    if (input.value != "-1") {
       showSuccess(input);
       result = true;
     } else {
-      showError(
-        input,
-        "La nacionalidad debe de estar entre 3 y 50 caracteres."
-      );
+      showError(input, "No se ha seleccionado ningún artista.");
     }
   } else {
     showError(input, "Este campo es obligatorio.");
@@ -335,24 +344,18 @@ function checkNationalityInput(input) {
  * @param {HTMLInputElement} input
  * @returns {boolean}
  */
-function checkBirthdateInput(input) {
+function checkYearInput(input) {
   let result = false;
   if (isRequired(input.value)) {
-    if (isBetween(input.value.length, 3, 50)) {
-      if (isDateInThePast(input.value)) {
+    if(isNumber(input.value)){
+      if (isNotYearInTheFuture(Number(input.value))) {
         showSuccess(input);
         result = true;
       } else {
-        showError(
-          input,
-          "La fecha no puede ser posterior o igual a la actual."
-        );
+        showError(input,"El año no puede ser posterior al actual.")
       }
-    } else {
-      showError(
-        input,
-        "La fecha de nacimiento debe de estar entre 3 y 50 caracteres."
-      );
+    }else{
+      showError(input,"El año debe de ser un número");
     }
   } else {
     showError(input, "Este campo es obligatorio.");
@@ -368,17 +371,17 @@ function validateInput(event) {
   const name = event.target.name;
 
   switch (name) {
-    case "nameInput":
-      checkNameInput(event.target);
+    case "titleInput":
+      checkTitleInput(event.target);
       break;
     case "genreInput":
       checkGenreInput(event.target);
       break;
-    case "nationalityInput":
-      checkNationalityInput(event.target);
+    case "artistInput":
+      checkArtistInput(event.target);
       break;
-    case "birthdateInput":
-      checkBirthdateInput(event.target);
+    case "yearInput":
+      checkYearInput(event.target);
       break;
 
     default:
@@ -387,40 +390,41 @@ function validateInput(event) {
 }
 
 function submitForm(event) {
-  const nameInput = document.getElementById("nameInput");
+  const titleInput = document.getElementById("titleInput");
   const genreInput = document.getElementById("genreInput");
-  const nationalityInput = document.getElementById("nationalityInput");
-  const birthdateInput = document.getElementById("birthdateInput");
+  const artistInput = document.getElementById("artistInput");
+  const yearInput = document.getElementById("yearInput");
 
-  const validateNameInput = checkNameInput(nameInput);
+  const validatetitleInput = checkTitleInput(titleInput);
   const validateGenreInput = checkGenreInput(genreInput);
-  const validateNationalityInput = checkNationalityInput(nationalityInput);
-  const validateBirthdateInput = checkBirthdateInput(birthdateInput);
+  const validateartistInput = checkArtistInput(artistInput);
+  const validateyearInput = checkYearInput(yearInput);
   if (
-    validateNameInput &&
+    validatetitleInput &&
     validateGenreInput &&
-    validateNationalityInput &&
-    validateBirthdateInput
+    validateartistInput &&
+    validateyearInput
   ) {
     /**
-     * @type {Artist}
+     * @type {Song}
      */
-    const newArtist = {
-      name: nameInput.value,
-      genre: genreInput.value,
-      nationality: nationalityInput.value,
-      birthdate: birthdateInput.value,
-    };
-    addArtist(newArtist, (isError, msg) => {
-      if (isError) {
+    const newSong = {
+      title : titleInput.value,
+      genre : genreInput.value,
+      idArtist : artistInput.value,
+      year : yearInput.value
+    }
+
+    addSong(newSong,(isError,msg) => {
+      if(isError){
         alert(msg);
-      } else {
+      }else{
         alert(msg);
       }
     });
-    nameInput.value = "";
+    titleInput.value = "";
     genreInput.value = "";
-    nationalityInput.value = "";
-    birthdateInput.value = "";
+    artistInput.value = "";
+    yearInput.value = "";
   }
 }

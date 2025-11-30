@@ -29,11 +29,11 @@ export function Home(main) {
   ul.appendChild(li1);
 
   const li2 = document.createElement("li");
-  li2.textContent = "Crear, editar, eliminar y actualizar canciones (CRUD)";
+  li2.textContent = "Crear canciones";
   ul.appendChild(li2);
   
   const li3 = document.createElement("li");
-  li3.textContent = "Crear, editar, eliminar y actualizar artistas (CRUD)";
+  li3.textContent = "Crear artistas";
   ul.appendChild(li3);
   
   const li4 = document.createElement("li");
