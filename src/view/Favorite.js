@@ -29,6 +29,7 @@ export function Favorite(main) {
 
   const h2 = document.createElement("h2");
   h2.textContent = "Favoritos";
+  h2.dataset.i18n = "view.favorite.h2";
   h2.className = "w-auto me-auto mb-0";
   divCardHead.appendChild(h2);
   div.appendChild(divCardHead);
@@ -55,6 +56,7 @@ function renderCardSong(divMain, songsId) {
 
   const h3 = document.createElement("h3");
   h3.textContent = "Canciones";
+  h3.dataset.i18n = "view.favorite.h3Song";
   h3.className = "w-auto me-auto mb-0";
   divCardHead.appendChild(h3);
 
@@ -88,22 +90,27 @@ function addTableSongHead(table) {
 
   const thTitle = document.createElement("th");
   thTitle.textContent = "Título";
+  thTitle.dataset.i18n = "view.favorite.thSongTitle";
   tr.appendChild(thTitle);
 
   const thGenre = document.createElement("th");
   thGenre.textContent = "Género";
+  thGenre.dataset.i18n = "view.favorite.thSongGenre";
   tr.appendChild(thGenre);
 
   const thArtist = document.createElement("th");
   thArtist.textContent = "Artista";
+  thArtist.dataset.i18n = "view.favorite.thSongArtist";
   tr.appendChild(thArtist);
 
   const thYear = document.createElement("th");
   thYear.textContent = "Año";
+  thYear.dataset.i18n = "view.favorite.thSongYear";
   tr.appendChild(thYear);
 
   const thAction = document.createElement("th");
   thAction.textContent = "Acciones";
+  thAction.dataset.i18n = "view.favorite.thSongAction";
   tr.appendChild(thAction);
 
   thead.appendChild(tr);
@@ -217,6 +224,7 @@ function renderCardArtist(divMain, artistIds) {
 
   const h3 = document.createElement("h3");
   h3.textContent = "Artistas";
+  h3.dataset.i18n = "view.favorite.h3Artist";
   h3.className = "w-auto me-auto mb-0";
   divCardHead.appendChild(h3);
 
@@ -250,22 +258,27 @@ function addTableHead(table) {
 
   const thTitle = document.createElement("th");
   thTitle.textContent = "Nombre";
+  thTitle.dataset.i18n = "view.favorite.thArtistTitle";
   tr.appendChild(thTitle);
 
   const thGenre = document.createElement("th");
   thGenre.textContent = "Género";
+  thGenre.dataset.i18n = "view.favorite.thArtistGenre";
   tr.appendChild(thGenre);
 
   const thArtist = document.createElement("th");
   thArtist.textContent = "Nacionalidad";
+  thArtist.dataset.i18n = "view.favorite.thArtistNationality";
   tr.appendChild(thArtist);
 
   const thDate = document.createElement("th");
   thDate.textContent = "Fecha de Nacimiento";
+  thDate.dataset.i18n = "view.favorite.thArtistBirthdate";
   tr.appendChild(thDate);
 
   const thAction = document.createElement("th");
   thAction.textContent = "Acciones";
+  thAction.dataset.i18n = "view.favorite.thArtistAction";
   tr.appendChild(thAction);
 
   thead.appendChild(tr);

@@ -1,5 +1,91 @@
 {
-    "nav":{
-        "song":"Canciones"
+  "layout": {
+    "nav": {
+      "song": "Canciones",
+      "artist": "Artistas",
+      "favorite": "Favoritos"
+    },
+    "footer": {
+      "info": "Creado por Iván Fernández Méndez"
     }
+  },
+  "view":{
+    "artist":{
+      "h2":"Artista",
+      "btnCreate":"Añadir nuevo Artista",
+      "thTitle":"Nombre",
+      "thGenre":"Género",
+      "thArtist":"Nacionalidad",
+      "thDate":"Fecha de Nacimiento",
+      "thAction":"Acciones"
+    },
+    "artistManager":{
+      "h2Edit": "Editar Artista",
+      "h2Create": "Crear Artista",
+      "h2Delete": "Borrar Artista",
+      "h2Show": "Mostrar Artista",
+      "btnBack": "Volver",
+      "submit": "Enviar",
+      "labelName": "Nombre",
+      "labelGenre": "Géreno",
+      "labelNationality": "Nacionalidad",
+      "labelBirthdate": "Fecha de nacimiento"
+    },
+    "errorView":{
+      "h2":"Error"
+    },
+    "favorite":{
+      "h2":"Favoritos",
+      "h3Song":"Canciones",
+      "thSongTitle":"Título",
+      "thSongGenre":"Género",
+      "thSongArtist":"Artista",
+      "thSongYear":"Año",
+      "thSongAction":"Acciones",
+      "h3Artist":"Artistas",
+      "thArtistTitle":"Nombre",
+      "thArtistGenre":"Género",
+      "thArtistNationality":"Nacionalidad",
+      "thArtistBirthdate":"Fecha de Nacimiento",
+      "thArtistAction":"Acciones"
+    },
+    "home":{
+      "title": "Sobre MusiCollection",
+      "p1":"MusiCollection es una aplicación pensada para explorar y gestionar una colección musical compartida entre todos los usuarios. Te permite visualizar canciones y artistas, administrarlos fácilmente y mantener todo organizado en un solo lugar.",
+      "p2":"Además, podrás marcar tus pistas y artistas favoritos para acceder a ellos rápidamente, guardándolos directamente en tu navegador mediante localStorage y manteniendo tus preferencias siempre disponibles.",
+      "h3":"Funcionalidades",
+      "li1":"Visualizar lista de canciones",
+      "li2":"Crear canciones",
+      "li3":"Crear artistas",
+      "li4":"Añadir y quitar canciones de favoritos",
+      "li5":"Añadir y quitar artistas de favoritos",
+      "li6":"Guardado de favoritos mediante localStorage"
+    },
+    "notFound":{
+      "h2":"Error 404",
+      "p":"La página no existe."
+    },
+    "song":{
+      "h2":"Canciones",
+      "btnCreate":"Añadir nueva Canción",
+      "thTitle":"Título",
+      "thGenre":"Género",
+      "thArtist":"Artista",
+      "thYear":"Año",
+      "thAction":"Acciones"
+    },
+    "songManager":{
+      "h2Edit":"Editar Canción",
+      "h2Create":"Crear Canción",
+      "h2Delete":"Borrar Canción",
+      "h2Show":"Mostrar Canción",
+      "btnBack":"Volver",
+      "submit":"Enviar",
+      "labelTitle":"Título",
+      "labelGenre":"Géreno",
+      "labelArtist":"Artista",
+      "defaultOption":" -- Elige una opción -- ",
+      "labelYear":"Año de publicación"
+    }
+  }
 }

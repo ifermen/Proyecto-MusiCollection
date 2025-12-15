@@ -1,5 +1,91 @@
 {
-    "nav":{
-        "song":"Song"
+  "layout": {
+    "nav": {
+      "song": "Songs",
+      "artist": "Artists",
+      "favorite": "Favorites"
+    },
+    "footer": {
+      "info": "Created by Iván Fernández Méndez"
     }
+  },
+  "view": {
+    "artist": {
+      "h2": "Artist",
+      "btnCreate": "Add new Artist",
+      "thTitle": "Name",
+      "thGenre": "Genre",
+      "thArtist": "Nationality",
+      "thDate": "Date of Birth",
+      "thAction": "Actions"
+    },
+    "artistManager": {
+      "h2Edit": "Edit Artist",
+      "h2Create": "Create Artist",
+      "h2Delete": "Delete Artist",
+      "h2Show": "Show Artist",
+      "btnBack": "Back",
+      "submit": "Submit",
+      "labelName": "Name",
+      "labelGenre": "Genre",
+      "labelNationality": "Nationality",
+      "labelBirthdate": "Date of birth"
+    },
+    "errorView": {
+      "h2": "Error"
+    },
+    "favorite": {
+      "h2": "Favorites",
+      "h3Song": "Songs",
+      "thSongTitle": "Title",
+      "thSongGenre": "Genre",
+      "thSongArtist": "Artist",
+      "thSongYear": "Year",
+      "thSongAction": "Actions",
+      "h3Artist": "Artists",
+      "thArtistTitle": "Name",
+      "thArtistGenre": "Genre",
+      "thArtistNationality": "Nationality",
+      "thArtistBirthdate": "Date of Birth",
+      "thArtistAction": "Actions"
+    },
+    "home": {
+      "title": "About MusiCollection",
+      "p1": "MusiCollection is an application designed to explore and manage a shared music collection among all users. It allows you to view songs and artists, manage them easily, and keep everything organized in one place.",
+      "p2": "In addition, you can mark your favorite tracks and artists for quick access, saving them directly in your browser using localStorage and keeping your preferences always available.",
+      "h3": "Features",
+      "li1": "View song list",
+      "li2": "Create songs",
+      "li3": "Create artists",
+      "li4": "Add and remove songs from favorites",
+      "li5": "Add and remove artists from favorites",
+      "li6": "Save favorites using localStorage"
+    },
+    "notFound": {
+      "h2": "Error 404",
+      "p": "The page does not exist."
+    },
+    "song": {
+      "h2": "Songs",
+      "btnCreate": "Add new Song",
+      "thTitle": "Title",
+      "thGenre": "Genre",
+      "thArtist": "Artist",
+      "thYear": "Year",
+      "thAction": "Actions"
+    },
+    "songManager": {
+      "h2Edit": "Edit Song",
+      "h2Create": "Create Song",
+      "h2Delete": "Delete Song",
+      "h2Show": "Show Song",
+      "btnBack": "Back",
+      "submit": "Submit",
+      "labelTitle": "Title",
+      "labelGenre": "Genre",
+      "labelArtist": "Artist",
+      "defaultOption": " -- Choose an option -- ",
+      "labelYear": "Year of release"
+    }
+  }
 }

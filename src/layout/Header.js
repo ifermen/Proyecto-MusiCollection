@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import { nav } from "./Nav";
-import { translatePage } from "../i18n/i18n";
+import { translatePage, updateDirection } from "../i18n/i18n";
 
 /**
  *  
@@ -21,21 +21,39 @@ export function header(app) {
     a.appendChild(h1);
     header.appendChild(a);
 
-    const btnEs = document.createElement("button");
-    btnEs.id = "btnEs";
-    btnEs.textContent = "Español";
-    btnEs.addEventListener("click", () => {
-        i18next.changeLanguage("es").then(translatePage);
-    });
-    header.appendChild(btnEs);
+    const selectLanguage = document.createElement("select");
+    selectLanguage.id="selectLanguage";
+    selectLanguage.name="selectLanguage";
+    selectLanguage.className="form-select w-auto";
 
-    const btnEn = document.createElement("button");
-    btnEn.id = "btnEs";
-    btnEn.textContent = "English";
-    btnEn.addEventListener("click", () => {
-        i18next.changeLanguage("en").then(translatePage);
-    });
-    header.appendChild(btnEn);
+    const optionEs = document.createElement("option");
+    optionEs.value = "es";
+    optionEs.selected = true;
+    optionEs.textContent = "Español";
+    selectLanguage.appendChild(optionEs);
+
+    const optionEn = document.createElement("option");
+    optionEn.value = "en";
+    optionEn.textContent = "English";
+    selectLanguage.appendChild(optionEn);
+    
+    const optionFr = document.createElement("option");
+    optionFr.value = "fr";
+    optionFr.textContent = "Français";
+    selectLanguage.appendChild(optionFr);
+
+    const optionAr = document.createElement("option");
+    optionAr.value = "ar";
+    optionAr.textContent = "عربي";
+    selectLanguage.appendChild(optionAr);
+
+    selectLanguage.addEventListener("input",() => {
+        i18next.changeLanguage(selectLanguage.value).then(() => {
+            translatePage();
+            updateDirection();
+        });
+    })
+    header.appendChild(selectLanguage);
 
     nav(header)
     app.appendChild(header);

@@ -8,6 +8,7 @@ export function footer(app) {
     
     const p = document.createElement("p");
     p.textContent = "Creado por Iván Fernández Méndez";
+    p.dataset.i18n = "layout.footer.info";
     p.className = "m-0 w-auto";
 
     footer.appendChild(p);

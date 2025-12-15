@@ -25,6 +25,7 @@ export function Song(main) {
 
   const h2 = document.createElement("h2");
   h2.textContent = "Canciones";
+  h2.dataset.i18n = "view.song.h2";
   h2.className = "w-auto me-auto mb-0";
   divCardHead.appendChild(h2);
 
@@ -33,6 +34,7 @@ export function Song(main) {
   const buttonCreate = document.createElement("button");
   buttonCreate.className = "btn btn-color-custom rounded-5";
   buttonCreate.textContent = "Añadir nueva Canción";
+  buttonCreate.dataset.i18n = "view.song.btnCreate";
   aButtonCreate.appendChild(buttonCreate);
   divCardHead.appendChild(aButtonCreate);
 
@@ -66,22 +68,27 @@ export function addTableHead(table) {
 
   const thTitle = document.createElement("th");
   thTitle.textContent = "Título";
+  thTitle.dataset.i18n = "view.song.thTitle";
   tr.appendChild(thTitle);
 
   const thGenre = document.createElement("th");
   thGenre.textContent = "Género";
+  thGenre.dataset.i18n = "view.song.thGenre";
   tr.appendChild(thGenre);
 
   const thArtist = document.createElement("th");
   thArtist.textContent = "Artista";
+  thArtist.dataset.i18n = "view.song.thArtist";
   tr.appendChild(thArtist);
 
   const thYear = document.createElement("th");
   thYear.textContent = "Año";
+  thYear.dataset.i18n = "view.song.thYear";
   tr.appendChild(thYear);
 
   const thAction = document.createElement("th");
   thAction.textContent = "Acciones";
+  thAction.dataset.i18n = "view.song.thAction";
   tr.appendChild(thAction);
 
   thead.appendChild(tr);

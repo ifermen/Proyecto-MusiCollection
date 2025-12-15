@@ -1,4 +1,3 @@
-import i18next from "i18next";
 
 /**
  * 
@@ -28,7 +27,7 @@ export function linkToSong(nav){
     a.className = "nav-link active btn-color-custom fw-bold rounded-5";
     a.href = "#/Song";
     a.textContent = "Canciones";
-    a.dataset.i18n = "nav.song";
+    a.dataset.i18n = "layout.nav.song";
 
     li.appendChild(a);
     nav.appendChild(li);
@@ -47,6 +46,7 @@ export function linkToArtist(nav){
     a.className = "nav-link active btn-color-custom fw-bold rounded-5";
     a.href = "#/artist";
     a.textContent = "Artistas";
+    a.dataset.i18n = "layout.nav.artist";
 
     li.appendChild(a);
     nav.appendChild(li);
@@ -65,6 +65,7 @@ export function linkToFavorite(nav){
     a.className = "nav-link active btn-color-custom fw-bold rounded-5";
     a.href = "#/favorite";
     a.textContent = "Favoritos";
+    a.dataset.i18n = "layout.nav.favorite";
 
     li.appendChild(a);
     nav.appendChild(li);

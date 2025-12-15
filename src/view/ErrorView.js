@@ -10,6 +10,7 @@ export function ErrorView(main,textError) {
 
   const h2 = document.createElement("h2");
   h2.textContent = "Error";
+  h2.dataset.i18n = "view.errorView.h2";
   div.appendChild(h2);
 
   const p = document.createElement("p");

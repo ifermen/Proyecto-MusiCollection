@@ -24,6 +24,7 @@ export function Artist(main) {
 
   const h2 = document.createElement("h2");
   h2.textContent = "Artista";
+  h2.dataset.i18n = "view.artist.h2";
   h2.className = "w-auto me-auto mb-0";
   divCardHead.appendChild(h2);
 
@@ -32,6 +33,7 @@ export function Artist(main) {
   const buttonCreate = document.createElement("button");
   buttonCreate.className = "btn btn-color-custom rounded-5";
   buttonCreate.textContent = "Añadir nuevo Artista";
+  buttonCreate.dataset.i18n = "view.artist.btnCreate";
   aButtonCreate.appendChild(buttonCreate);
   divCardHead.appendChild(aButtonCreate);
 
@@ -65,22 +67,27 @@ function addTableHead(table) {
 
   const thTitle = document.createElement("th");
   thTitle.textContent = "Nombre";
+  thTitle.dataset.i18n = "view.artist.thTitle";
   tr.appendChild(thTitle);
 
   const thGenre = document.createElement("th");
   thGenre.textContent = "Género";
+  thGenre.dataset.i18n = "view.artist.thGenre";
   tr.appendChild(thGenre);
 
   const thArtist = document.createElement("th");
   thArtist.textContent = "Nacionalidad";
+  thArtist.dataset.i18n = "view.artist.thArtist";
   tr.appendChild(thArtist);
 
   const thDate = document.createElement("th");
   thDate.textContent = "Fecha de Nacimiento";
+  thDate.dataset.i18n = "view.artist.thDate";
   tr.appendChild(thDate);
 
   const thAction = document.createElement("th");
   thAction.textContent = "Acciones";
+  thAction.dataset.i18n = "view.artist.thAction";
   tr.appendChild(thAction);
 
   thead.appendChild(tr);

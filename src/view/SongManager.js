@@ -41,15 +41,19 @@ export function SongManager(main, params) {
     switch (paramAction) {
       case "edit":
         h2.textContent = "Editar Canción";
+        h2.dataset.i18n = "view.songManager.h2Edit";
         break;
       case "create":
         h2.textContent = "Crear Canción";
+        h2.dataset.i18n = "view.songManager.h2Create";
         break;
       case "delete":
         h2.textContent = "Borrar Canción";
+        h2.dataset.i18n = "view.songManager.h2Delete";
         break;
       case "show":
         h2.textContent = "Mostar Canción";
+        h2.dataset.i18n = "view.songManager.h2Show";
         break;
       default:
         throw new Error("Acción incorrecta");
@@ -67,6 +71,7 @@ export function SongManager(main, params) {
   const buttonCreate = document.createElement("button");
   buttonCreate.className = "btn btn-secondary rounded-5";
   buttonCreate.textContent = "Volver";
+  buttonCreate.dataset.i18n = "view.songManager.btnBack";
   aButtonCreate.appendChild(buttonCreate);
   divCardHead.appendChild(aButtonCreate);
 
@@ -132,6 +137,7 @@ function renderForm(divCardBody) {
 
   const button = document.createElement("button");
   button.textContent = "Enviar";
+  button.dataset.i18n = "view.songManager.submit";
   button.className = "btn btn-color-custom rounded-5 w-100 mt-3";
   button.type = "submit";
   form.appendChild(button);
@@ -152,6 +158,7 @@ function renderInputTitle(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Título";
+  label.dataset.i18n = "view.songManager.labelTitle";
   label.htmlFor = "titleInput";
   label.className = "form-label";
 
@@ -178,6 +185,7 @@ function renderInputGenre(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Géreno";
+  label.dataset.i18n = "view.songManager.labelGenre";
   label.htmlFor = "genreInput";
   label.className = "form-label";
 
@@ -205,12 +213,14 @@ function renderInputArtist(form) {
   select.className = "form-select rounded-5";
   const label = document.createElement("label");
   label.textContent = "Artista";
+  label.dataset.i18n = "view.songManager.labelArtist";
   label.htmlFor = "artistInput";
   label.className = "form-label";
 
   getAllArtist((artists) => {
     const defaultOption = document.createElement("option");
-    defaultOption.textContent = " -- Elige una opción --";
+    defaultOption.textContent = " -- Elige una opción -- ";
+    defaultOption.dataset.i18n = "view.songManager.defaultOption";
     defaultOption.value = "-1";
     select.appendChild(defaultOption);
     artists.forEach((artist) => {
@@ -245,6 +255,7 @@ function renderInputYear(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Año de publicación";
+  label.dataset.i18n = "view.songManager.labelYear";
   label.htmlFor = "yearInput";
   label.className = "form-label";
 

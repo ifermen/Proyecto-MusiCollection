@@ -43,15 +43,19 @@ export function ArtistManager(main, params) {
     switch (paramAction) {
       case "edit":
         h2.textContent = "Editar Artista";
+        h2.dataset.i18n = "view.artistManager.h2Edit";
         break;
       case "create":
         h2.textContent = "Crear Artista";
+        h2.dataset.i18n = "view.artistManager.h2Create";
         break;
       case "delete":
         h2.textContent = "Borrar Artista";
+        h2.dataset.i18n = "view.artistManager.h2Delete";
         break;
       case "show":
         h2.textContent = "Mostar Artista";
+        h2.dataset.i18n = "view.artistManager.h2Show";
         break;
       default:
         throw new Error("Acción incorrecta");
@@ -69,6 +73,7 @@ export function ArtistManager(main, params) {
   const buttonCreate = document.createElement("button");
   buttonCreate.className = "btn btn-secondary rounded-5";
   buttonCreate.textContent = "Volver";
+  buttonCreate.dataset.i18n = "view.artistManager.btnBack";
   aButtonCreate.appendChild(buttonCreate);
   divCardHead.appendChild(aButtonCreate);
 
@@ -134,6 +139,7 @@ function renderForm(divCardBody) {
 
   const button = document.createElement("button");
   button.textContent = "Enviar";
+  button.dataset.i18n = "view.artistManager.submit";
   button.className = "btn btn-color-custom rounded-5 w-100 mt-3";
   button.type = "submit";
   form.appendChild(button);
@@ -154,6 +160,7 @@ function renderInputName(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Nombre";
+  label.dataset.i18n = "view.artistManager.labelName";
   label.htmlFor = "nameInput";
   label.className = "form-label";
 
@@ -180,6 +187,7 @@ function renderInputGenre(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Géreno";
+  label.dataset.i18n = "view.artistManager.labelGenre";
   label.htmlFor = "genreInput";
   label.className = "form-label";
 
@@ -206,6 +214,7 @@ function renderInputNationality(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Nacionalidad";
+  label.dataset.i18n = "view.artistManager.labelNationality";
   label.htmlFor = "nationalityInput";
   label.className = "form-label";
 
@@ -233,6 +242,7 @@ function renderInputBirthdate(form) {
   input.className = "form-control rounded-5";
   const label = document.createElement("label");
   label.textContent = "Fecha de nacimiento";
+  label.dataset.i18n = "view.artistManager.labelBirthdate";
   label.htmlFor = "birthdateInput";
   label.className = "form-label";
 

@@ -1,3 +1,4 @@
+import { translatePage, updateDirection } from "./i18n/i18n.js";
 import { Artist } from "./view/Artist.js";
 import { ArtistManager } from "./view/ArtistManager.js";
 import { Favorite } from "./view/Favorite.js";
@@ -34,4 +35,7 @@ export function router() {
   }else{
     screen(view);
   }
+
+  translatePage();
+  updateDirection();
 }
