@@ -10,6 +10,7 @@ export function nav (header){
 
     linkToSong(ul);
     linkToArtist(ul);
+    linkToFavorite(ul);
 
     header.appendChild(ul);
     
@@ -24,7 +25,7 @@ export function linkToSong(nav){
     li.className = "nav-item";
 
     const a = document.createElement("a");
-    a.className = "nav-link active bg-gradient-primary-link fw-bold rounded-5";
+    a.className = "nav-link active btn-color-custom fw-bold rounded-5";
     a.href = "#/Song";
     a.textContent = "Canciones";
     a.dataset.i18n = "nav.song";
@@ -43,9 +44,27 @@ export function linkToArtist(nav){
     li.className = "nav-item";
 
     const a = document.createElement("a");
-    a.className = "nav-link active bg-gradient-primary-link fw-bold rounded-5";
+    a.className = "nav-link active btn-color-custom fw-bold rounded-5";
     a.href = "#/artist";
     a.textContent = "Artistas";
+
+    li.appendChild(a);
+    nav.appendChild(li);
+
+}
+
+/**
+ * 
+ * @param {HTMLUListElement} nav 
+ */
+export function linkToFavorite(nav){
+    const li = document.createElement("li");
+    li.className = "nav-item";
+
+    const a = document.createElement("a");
+    a.className = "nav-link active btn-color-custom fw-bold rounded-5";
+    a.href = "#/favorite";
+    a.textContent = "Favoritos";
 
     li.appendChild(a);
     nav.appendChild(li);
