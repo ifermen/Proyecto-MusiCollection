@@ -1,4 +1,6 @@
+import i18next from "i18next";
 import { nav } from "./Nav";
+import { translatePage } from "../i18n/i18n";
 
 /**
  *  
@@ -18,6 +20,23 @@ export function header(app) {
 
     a.appendChild(h1);
     header.appendChild(a);
+
+    const btnEs = document.createElement("button");
+    btnEs.id = "btnEs";
+    btnEs.textContent = "Español";
+    btnEs.addEventListener("click", () => {
+        i18next.changeLanguage("es").then(translatePage);
+    });
+    header.appendChild(btnEs);
+
+    const btnEn = document.createElement("button");
+    btnEn.id = "btnEs";
+    btnEn.textContent = "English";
+    btnEn.addEventListener("click", () => {
+        i18next.changeLanguage("en").then(translatePage);
+    });
+    header.appendChild(btnEn);
+
     nav(header)
     app.appendChild(header);
 }

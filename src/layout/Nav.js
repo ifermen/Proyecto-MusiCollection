@@ -1,3 +1,5 @@
+import i18next from "i18next";
+
 /**
  * 
  * @param {HTMLDivElement} header 
@@ -25,6 +27,7 @@ export function linkToSong(nav){
     a.className = "nav-link active bg-gradient-primary-link fw-bold rounded-5";
     a.href = "#/Song";
     a.textContent = "Canciones";
+    a.dataset.i18n = "nav.song";
 
     li.appendChild(a);
     nav.appendChild(li);
